@@ -131,6 +131,19 @@ guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stat
   return apiCalls;
 }]);
 
+//math factory for various calculations
+guiltySpender.factory('math', [function(){
+  var math = {};
+  //calculate percentage of total
+  math.calcPercent = function(value,total) {
+    var calculated = Math.floor((value / total) * 100);
+    return calculated;
+  }
+
+
+  return math;
+}]);
+
 guiltySpender.controller('LoginController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
   console.log('Login Page');
 }]);
@@ -161,7 +174,7 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
 
 }]);
 
-guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$ionicLoading', 'apiCalls', '$window', '$ionicModal', function($scope, $rootScope, $http, $ionicLoading, apiCalls, $window, $ionicModal){
+guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$ionicLoading', 'apiCalls', 'math', '$window', '$ionicModal', function($scope, $rootScope, $http, $ionicLoading, apiCalls, math, $window, $ionicModal){
   console.log('Home Page');
   $http.get('http://localhost:3000/api/home')
     .then(function(userDetails) {
@@ -237,19 +250,17 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       //if user is 25% into the month
       //and has spend 50% of one total budget
       function overspent() {
-        var totalPercentSpent;
-        totalPercentSpent = (($scope.spent / $scope.totalIncome) * 100);
-        var percentCheck = Math.floor(totalPercentSpent);
+        var percentCheck;
+        percentCheck = math.calcPercent($scope.spent,$scope.totalIncome);
         console.log('total% '+percentCheck);
 
-        var datePercent;
-        datePercent = (($rootScope.day / $rootScope.month) * 100);
-        var dateCheck = Math.floor(datePercent);
+        var dateCheck;
+        dateCheck = math.calcPercent($rootScope.day,$rootScope.month)
         console.log('date% '+dateCheck);
 
         if(percentCheck >= 50 && dateCheck <= 25) {
           $rootScope.showAvi();
-          console.log('ya fucked up');
+          console.log('spent too much too early');
         }
       }
       overspent();
