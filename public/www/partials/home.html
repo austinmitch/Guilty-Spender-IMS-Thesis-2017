@@ -1,0 +1,35 @@
+<ion-view>
+  <ion-content>
+    <div class="content">
+      <section class="incomeInfo">
+        <div class="balanceMath" id="income">
+          <h2>Income</h2>
+          <p>${{totalIncome}}</p>
+        </div>
+        <div class="balanceMath" id="spent">
+          <h2>Spent</h2>
+          <p>${{spent}}</p>
+        </div>
+        <div class="balance">
+          <h2>${{remaining}}</h2>
+        </div>
+      </section>
+      <section ng-repeat="expense in userDetails.user_expenses" class="expenseInfo"  ng-click="showDiv = !showDiv">
+        <div class="expense" id="{{expense.expense_name}}">
+          <div>
+            <h1>{{expense.expense_name}}</h1>
+            <div class="progressBar">
+              <div class="progressBarFill"></div>
+            </div>
+          </div>
+          <ul class="purchaseList" ng-show="showDiv">
+            <li ng-repeat="purchase in expense.expense_purchases">
+              <p>{{purchase.purchase_name}}</p> <p>${{purchase.purchase_price}}</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <button type="button" name="newPurchase" ng-click="modal.show()">New Purchase</button>
+    </div>
+  </ion-content>
+</ion-view>

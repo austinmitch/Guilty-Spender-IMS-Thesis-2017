@@ -1,0 +1,10 @@
+<h2>Achievements</h2>
+<div class="achievementList">
+  <div ng-repeat="achievement in achieveDetails.user_achievements" class="achievement">
+    <img ng-src="img/achievements/{{achievement.ach_image}}" alt="{{achievement.ach_name}}">
+    <div class="achDetails">
+      <h3>{{achievement.ach_name}}</h3>
+      <p>{{achievement.ach_message}}</p>
+    </div>
+  </div>
+</div>

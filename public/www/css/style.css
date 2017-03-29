@@ -1,0 +1,264 @@
+body {
+  background-color: #07df8c;
+  font-size: 16px; }
+
+p, a, h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", arial, sans-serif; }
+
+.pane {
+  background-color: transparent; }
+
+.modal {
+  background-color: #07df8c; }
+
+.content {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+  overflow: hidden; }
+
+.headerBar {
+  background-color: #07a86a;
+  background-image: none; }
+  .headerBar .navButton {
+    width: 25%; }
+  .headerBar .date {
+    width: 50%;
+    color: #84f7c6;
+    text-align: center;
+    margin-top: 7px;
+    font-family: "Lato", arial, sans-serif;
+    font-size: 2em;
+    font-weight: 300; }
+  .headerBar .logo {
+    width: 25%;
+    text-align: right; }
+    .headerBar .logo img {
+      width: 60%; }
+
+.mainNav {
+  display: block;
+  margin-top: 44px; }
+  .mainNav .navItem {
+    background-color: #07a86a;
+    border: none; }
+    .mainNav .navItem a {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      background-color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #07df8c;
+      text-align: center;
+      box-shadow: 0px 2px 0px 0px #07df8c;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-family: "Lato", arial, sans-serif;
+      font-size: 1.8em;
+      font-weight: 300; }
+
+.aviModal {
+  background-color: #07a86a; }
+  .aviModal .content {
+    background-color: transparent; }
+
+.speechBubble {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 81% 80%, 49% 100%, 60% 80%, 0% 80%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 81% 80%, 49% 100%, 60% 80%, 0% 80%); }
+  .speechBubble p {
+    color: #07a86a;
+    line-height: 1.2em;
+    font-family: "Lato", arial, sans-serif;
+    font-weight: 300;
+    font-size: 1.6em; }
+
+.loginLink {
+  margin: 35px 0; }
+  .loginLink p, .loginLink a {
+    text-transform: capitalize;
+    color: #fff;
+    line-height: 40px;
+    font-size: 30px; }
+
+::-webkit-input-placeholder {
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  letter-spacing: 2px; }
+
+::-moz-placeholder {
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  letter-spacing: 2px; }
+
+:-ms-input-placeholder {
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  letter-spacing: 2px; }
+
+:-moz-placeholder {
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  letter-spacing: 2px; }
+
+input[type="text"], input[type="submit"], input[type="password"], select, label, button {
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  padding: 5px 0;
+  height: auto;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  font-size: 25px; }
+
+.photoUpload {
+  display: block;
+  color: #07a86a;
+  border: 3px dashed #07a86a;
+  transition: 0.5s ease;
+  margin-left: auto;
+  margin-right: auto; }
+  .photoUpload:hover {
+    background-color: #84f7c6; }
+  .photoUpload input {
+    display: none; }
+
+input[type="text"], input[type="password"], select {
+  border: 2px solid #07a86a; }
+
+input[type="submit"], button {
+  background-color: #84f7c6;
+  border: none;
+  box-shadow: 0px 4px 0px 0px #07a86a;
+  transition: all 0.2s ease;
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  letter-spacing: 2px; }
+  input[type="submit"]:active, button:active {
+    box-shadow: 0px 2px 0px 0px #07a86a; }
+
+.incomeInfo .balanceMath {
+  width: 50%;
+  float: left;
+  opacity: 0.5;
+  margin-bottom: 20px; }
+  .incomeInfo .balanceMath h2 {
+    font-size: 1em;
+    font-weight: 300; }
+  .incomeInfo .balanceMath p {
+    font-size: 1.5em; }
+
+.incomeInfo #income {
+  text-align: left; }
+
+.incomeInfo #spent {
+  text-align: right; }
+
+.incomeInfo .balance {
+  clear: left;
+  width: 80%;
+  margin: 0 auto 20px auto; }
+  .incomeInfo .balance h2 {
+    font-size: 4.9em;
+    font-weight: 300; }
+
+.expenseInfo {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  background-color: #fff; }
+  .expenseInfo h1 {
+    text-transform: uppercase;
+    padding: 15px 0 15px 20px;
+    margin-bottom: 0;
+    color: #07a86a;
+    float: left;
+    font-weight: 300;
+    font-size: 1em; }
+  .expenseInfo .progressBar {
+    float: right;
+    width: 55%;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #e05555;
+    margin: 17px 20px 0 0; }
+    .expenseInfo .progressBar .progressBarFill {
+      height: 15px;
+      border-radius: 15px;
+      background-color: #d50000;
+      box-shadow: 0 0 0 3px #fff; }
+  .expenseInfo .purchaseList {
+    clear: both; }
+    .expenseInfo .purchaseList li {
+      padding: 15px 0;
+      background-color: #07a86a;
+      overflow: hidden;
+      border-top: 1px solid #07df8c;
+      border-bottom: 1px solid #07df8c; }
+      .expenseInfo .purchaseList li p {
+        display: inline;
+        text-transform: capitalize;
+        color: #fff;
+        font-size: 1.2em;
+        font-weight: 300; }
+        .expenseInfo .purchaseList li p:nth-child(1) {
+          float: left;
+          margin-left: 20px; }
+        .expenseInfo .purchaseList li p:nth-child(2) {
+          float: right;
+          margin-right: 20px; }
+
+.profileImage {
+  width: 60%;
+  background-color: #84f7c6;
+  text-align: center;
+  padding: 10%;
+  border-radius: 100%;
+  border: 2px solid #07a86a;
+  margin-left: auto;
+  margin-right: auto; }
+  .profileImage img {
+    width: 100%; }
+
+.userName {
+  margin-top: 20px; }
+  .userName h2 {
+    text-align: center;
+    width: 100%;
+    text-transform: capitalize;
+    font-family: "Lato", arial, sans-serif;
+    font-weight: 300; }
+
+.details table {
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #fff;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+  .details table tr {
+    overflow: hidden;
+    padding: 10px;
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #07df8c; }
+    .details table tr:last-child {
+      border-bottom: none; }
+  .details table td {
+    width: 50%;
+    display: block;
+    float: left; }
+  .details table .rowHeading {
+    background-color: #07a86a;
+    border-bottom: none; }

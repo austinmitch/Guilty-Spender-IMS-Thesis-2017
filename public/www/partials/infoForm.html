@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-view>
+    <ion-content>
+      <div class="content">
+        <button ng-click="modal.hide()">Back</button>
+        <form action="http://localhost:3000/users/api/infoinput" method="post">
+        <label for="income">how much $ do you make per paycheck</label>
+        <input type="text" name="income" value="" placeholder="$ PAYCHECK TOTAL">
+
+        <label for="freq">how often do you get paid</label>
+        <select name="freq">
+          <option value="4">weekly</option>
+          <option value="2">every 2 weeks</option>
+          <option value="1">monthly</option>
+        </select>
+
+        <label for="account">bank account(s)</label>
+        <input type="text" name="account" value="" placeholder="NAME">
+
+        <label for="expenseName">expenses</label>
+        <input type="text" name="expenseName" value="" placeholder="NAME">
+        <input type="text" name="expenseTotal" value="" placeholder="$ MONTHLY TOTAL">
+
+        <label for="oneClickName">one click purchases</label>
+        <input type="text" name="oneClickName" value="" placeholder="NAME">
+        <input type="text" name="oneClickTotal" value="" placeholder="$ PRICE">
+        <p>create quick buttons for frequent purchases (eg. daily coffee)</p>
+        <input type="submit" name="submit" value="Submit">
+        </form>
+      </div>
+    </ion-content>
+  </ion-view>
+</ion-modal-view>

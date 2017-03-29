@@ -1,0 +1,13 @@
+/*Guilty Spender Database*/
+/*Database Name = guilty_spender*/
+/*collection names = users, incomes, expenses, purchases*/
+
+/*creating first entry to make the database*/
+
+db.users.insert({"username":"austin","email":"amitch@email.com","password":"password","user_income":[],"user_expenses":[],"user_purchases":[],"user_achievements":[]})
+db.incomes.insert({"income_name":"primary","income_total":1200,"user_id":""})
+db.expenses.insert({"expense_name":"food","expense_price":100,"expense_purchases":[],"user_id":""})
+db.purchases.insert({"purchase_name":"coffee","purchase_price":1.90,"purchase_photo":"photo123341243523.jpg","expense_id":"","user_id":""})
+db.avatars.insert({"avatar_happy":[],"avatar_angry":[]})
+db.diologues.insert({"dio_good":[],"dio_bad":[],"dio_very_good":[],"dio_very_bad":[]})
+db.achievements.insert({"ach_name":"Made An Account","ach_image":"","ach_number":1,"ach_message":"Congrats On Setting Up Your Account"})
