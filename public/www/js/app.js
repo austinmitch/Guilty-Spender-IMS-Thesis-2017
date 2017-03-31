@@ -29,21 +29,8 @@ var guiltySpender = angular.module('guiltySpender', ['ionic', 'ui.router', 'ngSa
   $rootScope.openNav = function() {
     $rootScope.modalNav.show();
   };
-  $rootScope.closeNav =function() {
+  $rootScope.closeNav = function() {
     $rootScope.modalNav.hide();
-  };
-
-  $ionicModal.fromTemplateUrl('partials/avatar.html',{
-    scope:$rootScope,
-    animation:'slide-in-up'
-  }).then(function(modalAvi){
-    $rootScope.modalAvi = modalAvi;
-  });
-  $rootScope.showAvi = function() {
-    $rootScope.modalAvi.show();
-  };
-  $rootScope.hideAvi =function() {
-    $rootScope.modalAvi.hide();
   };
 
   $ionicPlatform.ready(function() {
@@ -116,34 +103,6 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
   $urlRouterProvider.otherwise('/home');
 }]);
 
-//factory
-guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stateParams) {
-  var baseUrl = 'http://localhost:3000/api/';
-  var userUrl = 'http://localhost:3000/users/api/'
-  var apiCalls = {};
-
-  apiCalls.getDetails = function(endPoint) {
-    return $http.get(baseUrl+endPoint);
-  }
-  apiCalls.getUserDetails = function(endPoint) {
-    return $http.get(userUrl+endPoint);
-  }
-  return apiCalls;
-}]);
-
-//math factory for various calculations
-guiltySpender.factory('math', [function(){
-  var math = {};
-  //calculate percentage of total
-  math.calcPercent = function(value,total) {
-    var calculated = Math.floor((value / total) * 100);
-    return calculated;
-  }
-
-
-  return math;
-}]);
-
 guiltySpender.controller('LoginController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
   console.log('Login Page');
 }]);
@@ -176,15 +135,11 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
 
 guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$ionicLoading', 'apiCalls', 'math', '$window', '$ionicModal', function($scope, $rootScope, $http, $ionicLoading, apiCalls, math, $window, $ionicModal){
   console.log('Home Page');
-  $http.get('http://localhost:3000/api/home')
+  apiCalls.getDetails('home')
     .then(function(userDetails) {
       console.log(userDetails);
       $scope.userDetails = userDetails.data;
       $scope.userDetails;
-
-      var totalIncome;
-      var spent;
-      var remaining;
 
       function calcIncome() {
         var incomes = $scope.userDetails.user_income;
@@ -240,7 +195,8 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
             console.log('purch '+purchaseTotal);
           }
           console.log(purchaseTotal);
-          var percent = ((purchaseTotal / percExpense[l].expense_price)*100);
+          var percent = math.calcPercent(purchaseTotal,percExpense[l].expense_price)
+          // var percent = ((purchaseTotal / percExpense[l].expense_price)*100);
           console.log('percent '+percent);
           barFill[l].style.width = percent+'%';
         }
@@ -271,6 +227,8 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
         calcPercent();
       });
     });
+
+    //modals
     $ionicModal.fromTemplateUrl('partials/newPurchase.html',{
       scope:$scope,
       animation:'slide-in-up'
@@ -283,6 +241,34 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
     $scope.closeModal =function() {
       $scope.modal.hide();
     };
+
+    $ionicModal.fromTemplateUrl('partials/avatar.html',{
+      scope:$rootScope,
+      animation:'slide-in-up'
+    }).then(function(modalAvi){
+      $rootScope.modalAvi = modalAvi;
+    });
+    $rootScope.showAvi = function() {
+      apiCalls.getDetails('diologue')
+      .then(function(diologue){
+        var badDio = diologue.data[0].dio_bad;
+        var randomPhrase = Math.floor(Math.random()*badDio.length);
+        $rootScope.phrase = badDio[randomPhrase].body;
+        console.log($rootScope.phrase);
+      });
+      apiCalls.getDetails('avatar')
+      .then(function(avatar){
+        var badAvi = avatar.data[0].avatar_angry;
+        var randomAvi = Math.floor(Math.random()*badAvi.length);
+        $rootScope.avi = badAvi[randomAvi];
+        console.log($rootScope.avi);
+      });
+      $rootScope.modalAvi.show();
+    };
+    $rootScope.hideAvi =function() {
+      $rootScope.modalAvi.hide();
+    };
+
 }]);
 
 guiltySpender.controller('InfoController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
