@@ -249,23 +249,21 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       $rootScope.modalAvi = modalAvi;
     });
     $rootScope.showAvi = function() {
-      apiCalls.getDetails('diologue')
+      apiCalls.getDio('bad')
       .then(function(diologue){
-        var badDio = diologue.data[0].dio_bad;
-        var randomPhrase = Math.floor(Math.random()*badDio.length);
-        $rootScope.phrase = badDio[randomPhrase].body;
+        var randomPhrase = Math.floor(Math.random()*diologue.data.length);
+        $rootScope.phrase = diologue.data[randomPhrase];
         console.log($rootScope.phrase);
       });
-      apiCalls.getDetails('avatar')
+      apiCalls.getAvi('angry')
       .then(function(avatar){
-        var badAvi = avatar.data[0].avatar_angry;
-        var randomAvi = Math.floor(Math.random()*badAvi.length);
-        $rootScope.avi = badAvi[randomAvi];
+        var randomAvi = Math.floor(Math.random()*avatar.data.length);
+        $rootScope.avi = avatar.data[randomAvi];
         console.log($rootScope.avi);
       });
       $rootScope.modalAvi.show();
     };
-    $rootScope.hideAvi =function() {
+    $rootScope.hideAvi = function() {
       $rootScope.modalAvi.hide();
     };
 

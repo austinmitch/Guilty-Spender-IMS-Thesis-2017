@@ -13,7 +13,9 @@ guiltySpender.factory('math', [function(){
 //api factory
 guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stateParams) {
   var baseUrl = 'http://localhost:3000/api/';
-  var userUrl = 'http://localhost:3000/users/api/'
+  var userUrl = 'http://localhost:3000/users/api/';
+  var aviUrl = 'http://localhost:3000/avatar/api/';
+  var dioUrl = 'http://localhost:3000/diologue/api/';
   var apiCalls = {};
 
   apiCalls.getDetails = function(endPoint) {
@@ -21,6 +23,12 @@ guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stat
   }
   apiCalls.getUserDetails = function(endPoint) {
     return $http.get(userUrl+endPoint);
+  }
+  apiCalls.getAvi = function(endPoint) {
+    return $http.get(aviUrl+endPoint);
+  }
+  apiCalls.getDio = function(endPoint) {
+    return $http.get(dioUrl+endPoint);
   }
   return apiCalls;
 }]);
