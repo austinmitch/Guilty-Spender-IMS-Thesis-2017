@@ -3,7 +3,7 @@
     <ion-content>
       <div class="content">
         <button ng-click="modal.hide()">Back</button>
-        <form class="newPurchase" action="http://localhost:3000/purchases/api/newpurchase" method="post">
+        <form class="newPurchase" action="http://localhost:3000/purchases/api/newpurchase" method="post" enctype="multipart/form-data">
           <input type="text" name="name" value="" placeholder="Name">
           <select name="expense">
             <option ng-repeat="expense in userDetails.user_expenses" value="{{expense._id}}">{{expense.expense_name}}</option>

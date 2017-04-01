@@ -1,9 +1,20 @@
 var express = require('express');
+var path = require('path');
 var mongoose = require('mongoose');
 var router = express.Router();
+var multer = require('multer');
 var Purchase = require('../models/Purchase.js');
 var Expense = require('../models/Expense.js');
 var config = require("../config/config.json");
+
+var storage = multer.diskStorage({
+  destination: __dirname + '/../public/www/img/reciept',
+  filename: function(req, file, name){
+    name(null,file.fieldname + Date.now() + path.extname(file.originalname));
+  }
+});
+
+var uploading = multer({storage:storage});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -13,15 +24,16 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/api/newPurchase', function(req,res,next) {
+router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,next) {
   var currentUser = global.myuser._id;
   var name = req.body.name;
   var expense = req.body.expense;
-  // research uploading photos and moving them to the correct folder
+  var photo = req.file.filename;
   var price = req.body.price;
   var newPurchase = new Purchase({
     purchase_name:name,
     purchase_price:price,
+    purchase_photo:photo,
     expense_id:expense,
     user_id:currentUser
   });
@@ -30,6 +42,7 @@ router.post('/api/newPurchase', function(req,res,next) {
   Expense.update({_id:expense}, {$push:{'expense_purchases':purchaseId}}, {upsert:true}, function(err) {
 if(err) return next(err);
   });
+  // console.log(req.file);
   res.redirect(config.urlBase+'home');
 });
 

@@ -94,6 +94,12 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
       controller: 'AchieveController',
       templateUrl: 'partials/achievePage.html'
     })
+  .state('upload',
+    {
+      url: '/upload',
+      controller: 'UploadController',
+      templateUrl: 'partials/uploadTest.html'
+    })
   .state('details',
     {
       url: '/details',
@@ -288,4 +294,8 @@ guiltySpender.controller('AchieveController', ['$scope', '$ionicLoading', 'apiCa
 
 guiltySpender.controller('DetailsController', ['$scope', '$ionicLoading', 'apiCalls', '$http', function($scope, $ionicLoading, apiCalls, $http){
 
+}]);
+
+guiltySpender.controller('UploadController', ['$scope', '$ionicLoading', 'apiCalls', '$http', function($scope, $ionicLoading, apiCalls, $http){
+  console.log('upload page');
 }]);

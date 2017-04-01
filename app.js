@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var expressSession = require('express-session');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -20,7 +21,6 @@ mongoose.connect('mongodb://localhost/guilty_spender', function(err) {
   }
 });
 
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var incomes = require('./routes/incomes');
@@ -30,6 +30,15 @@ var avatar = require('./routes/avatar');
 var diologue = require('./routes/diologue');
 
 var app = express();
+
+var storage = multer.diskStorage({
+  destination: __dirname+'/public/www/img',
+    filename: function (req, file, name) {
+        name(null, file.fieldname + Date.now() + path.extname(file.originalname));
+  }
+});
+
+var uploading = multer({storage:storage});
 
 //login and regoister routes that store the user info in a global variable
 //so it can be accessed by all routes
@@ -56,6 +65,11 @@ users.post('/api/register', function(req, res) {
         res.redirect(config.urlBase+"information");
       });
   });
+});
+
+index.post('/upload', uploading.single('profilePic'), function(req,res){
+  console.log(req.file.filename);
+  res.send('Uploaded');
 });
 
 
