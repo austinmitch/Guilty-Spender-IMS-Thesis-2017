@@ -17,6 +17,12 @@
             <td>${{income.income_total}}</td>
             <td>{{income.income_frequency}} times a month</td>
           </tr>
+          <tr class="rowHeading" ng-click="showRemain = !showRemain">
+            <th>Money Left</th>
+          </tr>
+          <tr ng-show="!showRemain">
+            <td>${{estimatedRemain}}</td>
+          </tr>
           <tr class="rowHeading" ng-click="showExpense = !showExpense">
             <th>Expense</th>
           </tr>

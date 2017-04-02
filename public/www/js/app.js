@@ -123,6 +123,17 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
    .then(function(profileDetails) {
      console.log(profileDetails);
      $scope.profileDetails = profileDetails.data;
+     var freq = $scope.profileDetails.user_income[0].income_frequency;
+     var income = $scope.profileDetails.user_income[0].income_total;
+     var totalIncome = income * freq;
+     var expenses = $scope.profileDetails.user_expenses;
+     var expenseTotal = 0;
+     for(var i=0;i<expenses.length;i++){
+       expenseTotal += expenses[i].expense_price;
+     }
+     console.log(expenseTotal);
+     $scope.estimatedRemain = totalIncome - expenseTotal;
+     console.log($scope.estimatedRemain);
    });
    $ionicModal.fromTemplateUrl('partials/infoForm.html',{
      scope:$scope,
