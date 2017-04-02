@@ -28,7 +28,11 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
   var currentUser = global.myuser._id;
   var name = req.body.name;
   var expense = req.body.expense;
-  var photo = req.file.filename;
+  if(!req.file) {
+    var photo = "";
+  }else{
+    var photo = req.file.filename;
+  }
   var price = req.body.price;
   var newPurchase = new Purchase({
     purchase_name:name,
