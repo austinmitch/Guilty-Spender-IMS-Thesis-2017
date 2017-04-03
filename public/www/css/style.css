@@ -220,7 +220,8 @@ input[type="submit"], button {
           margin-right: 20px; }
 
 .profileImage {
-  width: 60%;
+  width: 170px;
+  height: 170px;
   background-color: #84f7c6;
   text-align: center;
   padding: 10%;
