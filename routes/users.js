@@ -1,12 +1,29 @@
 var express = require('express');
+var path = require('path');
 var mongoose = require('mongoose');
 var router = express.Router();
+var multer = require('multer');
 var passport = require('passport');
 var User = require('../models/User.js');
 var Income = require('../models/Income.js');
 var Expense = require('../models/Expense.js');
 var Achievement = require('../models/Achievement.js');
 var config = require("../config/config.json");
+
+
+var storage = multer.diskStorage({
+  destination: __dirname + '/../public/www/img',
+    filename: function (req, file, name) {
+        name(null, file.fieldname + Date.now() + path.extname(file.originalname));
+  }
+});
+
+var uploading = multer({storage:storage});
+
+
+
+
+
 
 /* GET users listing. */
 router.get('/api/users', function(req, res, next) {
@@ -15,35 +32,6 @@ router.get('/api/users', function(req, res, next) {
     res.json(users);
   })
 });
-
-//these 2 routes are in the app.js file
-//so the user data can be saved as a global variable
-//register new user
-// router.post('/api/register', function(req, res) {
-//   User.register(new User({
-//       username: req.body.username,
-//       email: req.body.email
-//     }), req.body.password, function(err){
-//       if(err) {
-//         console.log('Registration failed');
-//       }
-//       passport.authenticate('local')(req, res, function() {
-//         myuser = req.user;
-//         res.redirect(config.urlBase+"home");
-//       });
-//   });
-//   res.redirect(config.urlBase+"home");
-// });
-
-//login
-// router.post('/api/login', passport.authenticate('local'), function(req,res,next) {
-//   if(!req.user) {
-//     console.log('denied');
-//     res.redirect(config.urlBase+'login');
-//   }
-//   myuser = req.user;
-//   res.redirect(config.urlBase+'home');
-// });
 
 //add in initial user financial infos
 router.post('/api/infoinput', function(req,res,next) {
@@ -97,7 +85,24 @@ router.get('/api/profile', function(req,res,next) {
       console.log(userDetails);
       res.json(userDetails);
     });
+});
 
+//update profile info
+router.post('/api/profile', uploading.single('profilePic'), function(req,res,next) {
+  var username = req.body.username;
+  var profilePic = req.file.filename;
+
+  if(username) {
+    User.update({_id:global.myuser._id},{$set:{username:username}},{upsert:true}, function(err){
+      if(err){console.log(err);}
+    });
+  }
+  if(profilePic) {
+    User.update({_id:global.myuser._id},{$set:{user_image:profilePic}},{upsert:true},function(err){
+      if(err){console.log(err);}
+    });
+  }
+  res.redirect(config.urlBase+'home');
 });
 
 router.get('/api/achievements', function(req,res,next) {
