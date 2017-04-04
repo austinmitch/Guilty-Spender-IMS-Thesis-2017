@@ -34,12 +34,14 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
     var photo = req.file.filename;
   }
   var price = req.body.price;
-  var currentMonth = new Date().getMonth();
+  var currentMonth = (new Date().getMonth())+1;
+  var currentYear = new Date().getFullYear();
+  var date = currentMonth+""+currentYear;
   var newPurchase = new Purchase({
     purchase_name:name,
     purchase_price:price,
     purchase_photo:photo,
-    purchase_date:currentMonth,
+    purchase_date:date,
     expense_id:expense,
     user_id:currentUser
   });

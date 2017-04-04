@@ -19,15 +19,17 @@ router.get('/', function(req, res, next) {
 //get home page information
 
 router.get('/api/home', function(req,res,next) {
-  var currentMonth = new Date().getMonth();
-  console.log(currentMonth);
+  var currentMonth = (new Date().getMonth())+1;
+  var currentYear = new Date().getFullYear();
+  var date = currentMonth+""+currentYear;
+  console.log("month"+currentMonth);
   User.findOne({_id:global.myuser._id})
     .populate('user_income')
     .populate({
       path:'user_expenses',
       populate:{
         path:'expense_purchases',
-        match:{purchase_date:{$eq:currentMonth}}
+        match:{purchase_date:{$eq:date}}
       }
     })
     .exec(function(err, userHome) {
