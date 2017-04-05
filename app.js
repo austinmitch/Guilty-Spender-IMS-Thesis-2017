@@ -23,7 +23,6 @@ mongoose.connect('mongodb://localhost/guilty_spender', function(err) {
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var incomes = require('./routes/incomes');
 var expenses = require('./routes/expenses');
 var purchases = require('./routes/purchases');
 var avatar = require('./routes/avatar');
@@ -106,7 +105,6 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/incomes', incomes);
 app.use('/expenses', expenses);
 app.use('/purchases', purchases);
 app.use('/avatar', avatar);

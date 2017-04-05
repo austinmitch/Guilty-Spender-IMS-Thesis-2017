@@ -5,7 +5,6 @@ var router = express.Router();
 var multer = require('multer');
 var passport = require('passport');
 var User = require('../models/User.js');
-var Income = require('../models/Income.js');
 var Expense = require('../models/Expense.js');
 var Achievement = require('../models/Achievement.js');
 var config = require("../config/config.json");
@@ -27,10 +26,7 @@ var uploading = multer({storage:storage});
 
 /* GET users listing. */
 router.get('/api/users', function(req, res, next) {
-  User.find(function(err, users){
-    if(err) return next(err);
-    res.json(users);
-  })
+
 });
 
 //add in initial user financial infos
@@ -44,14 +40,8 @@ router.post('/api/infoinput', function(req,res,next) {
   var oneClickName = req.body.oneClickName;
   var oneClickTotal = req.body.oneClickTotal;
   if(income) {
-    var newIncome = new Income({
-      income_total: income,
-      income_frequency: freq,
-      user_id: currentUser
-    });
-    newIncome.save();
-    var incomeId = newIncome._id;
-    User.update({_id:currentUser}, {$push: {'user_income':incomeId}},{upsert:true}, function(err) {
+
+    User.update({_id:currentUser}, {$set: {'user_income':{'income_total':income,'income_frequency':freq}}},{upsert:true}, function(err) {
       if(err) {
         console.log(err);
       }
@@ -78,7 +68,6 @@ router.post('/api/infoinput', function(req,res,next) {
 
 router.get('/api/profile', function(req,res,next) {
   User.findOne({_id:global.myuser._id})
-    .populate('user_income')
     .populate('user_expenses')
     .exec(function(err, userDetails) {
       if(err) return next(err);

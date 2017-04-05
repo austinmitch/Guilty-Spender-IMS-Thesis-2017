@@ -5,10 +5,13 @@ var userSchema = new mongoose.Schema({
   username:{type:String, required:[true,'Please enter your name']},
   email:{type:String, required:[true,'Email is required to create an account']},
   user_image:{type:String, default:'profile-pic-default.svg'},
-  // user_pass:{type:String, required:[true,'Please create a password']},
-  user_income:[{type:mongoose.Schema.Types.ObjectId, ref:'Income'}],
+  user_income:[
+    {
+      income_total:Number,
+      income_frequency:Number
+    }
+  ],
   user_expenses:[{type:mongoose.Schema.Types.ObjectId, ref:'Expense'}],
-  user_purchases:[{type:mongoose.Schema.Types.ObjectId, ref:'Purchase'}],
   user_achievements:[{type:mongoose.Schema.Types.ObjectId, ref:'Achievement'}]
 });
 

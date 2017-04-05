@@ -2,7 +2,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var User = require('../models/User.js');
-var Income = require('../models/Income.js');
 var Expense = require('../models/Expense.js');
 var Purchase = require('../models/Purchase.js');
 var Diologue = require('../models/Diologue.js');
@@ -17,14 +16,12 @@ router.get('/', function(req, res, next) {
 });
 
 //get home page information
-
 router.get('/api/home', function(req,res,next) {
   var currentMonth = (new Date().getMonth())+1;
   var currentYear = new Date().getFullYear();
   var date = currentMonth+""+currentYear;
   console.log("month"+currentMonth);
   User.findOne({_id:global.myuser._id})
-    .populate('user_income')
     .populate({
       path:'user_expenses',
       populate:{

@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
 
 var uploading = multer({storage:storage});
 
-/* GET users listing. */
+/* GET purchase listing. */
 router.get('/', function(req, res, next) {
   Purchase.find(function(err, purchases){
     if(err) return next(err);
@@ -43,7 +43,6 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
     purchase_photo:photo,
     purchase_date:date,
     expense_id:expense,
-    user_id:currentUser
   });
   newPurchase.save();
   var purchaseId = newPurchase._id;
