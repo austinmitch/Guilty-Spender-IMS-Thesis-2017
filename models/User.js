@@ -11,6 +11,13 @@ var userSchema = new mongoose.Schema({
       income_frequency:Number
     }
   ],
+  user_oneclick:[
+    {
+      oneclick_name:String,
+      oneclick_total:Number,
+      oneclick_expense:{type:mongoose.Schema.Types.ObjectId, ref:'Expense'}
+    }
+  ],
   user_expenses:[{type:mongoose.Schema.Types.ObjectId, ref:'Expense'}],
   user_achievements:[{type:mongoose.Schema.Types.ObjectId, ref:'Achievement'}]
 });

@@ -3,6 +3,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var router = express.Router();
 var multer = require('multer');
+var User = require('../models/User.js');
 var Purchase = require('../models/Purchase.js');
 var Expense = require('../models/Expense.js');
 var config = require("../config/config.json");
@@ -50,6 +51,10 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
 if(err) return next(err);
   });
   res.redirect(config.urlBase+'home');
+});
+
+router.post('/api/oneclick', function(req,res,next){
+  var currentUser = global.myuser._id;
 });
 
 module.exports = router;

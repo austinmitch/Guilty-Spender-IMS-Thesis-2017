@@ -39,8 +39,8 @@ router.post('/api/infoinput', function(req,res,next) {
   var expenseTotal = req.body.expenseTotal;
   var oneClickName = req.body.oneClickName;
   var oneClickTotal = req.body.oneClickTotal;
+  var oneClickExpense = req.body.oneClickExpense;
   if(income) {
-
     User.update({_id:currentUser}, {$set: {'user_income':{'income_total':income,'income_frequency':freq}}},{upsert:true}, function(err) {
       if(err) {
         console.log(err);
@@ -59,6 +59,17 @@ router.post('/api/infoinput', function(req,res,next) {
       if(err) {
         console.log(err);
       }
+    });
+  }
+
+  //one click purchases
+  if(oneClickName && oneClickTotal) {
+    User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
+      oneclick_name:oneClickName,
+      oneclick_total:oneClickTotal,
+      oneclick_expense:oneClickExpense
+    }}},{upsert:true}, function(err){
+        if(err) return next(err);
     });
   }
 

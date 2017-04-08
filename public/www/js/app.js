@@ -127,6 +127,7 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
      var income = $scope.profileDetails.user_income[0].income_total;
      var totalIncome = income * freq;
      var expenses = $scope.profileDetails.user_expenses;
+     $scope.expenses = expenses;
      var expenseTotal = 0;
      for(var i=0;i<expenses.length;i++){
        expenseTotal += expenses[i].expense_price;
@@ -157,6 +158,8 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       console.log(userDetails);
       $scope.userDetails = userDetails.data;
       $scope.userDetails;
+      $scope.oneClicks = $scope.userDetails.user_oneclick;
+      console.log($scope.oneClicks);
 
       function calcIncome() {
         var incomes = $scope.userDetails.user_income;

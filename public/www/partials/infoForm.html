@@ -24,6 +24,11 @@
         <label for="oneClickName">one click purchases</label>
         <input type="text" name="oneClickName" value="" placeholder="NAME">
         <input type="text" name="oneClickTotal" value="" placeholder="$ PRICE">
+
+        <select name="oneClickExpense">
+          <option ng-repeat="expense in expenses" value="{{expense._id}}">{{expense.expense_name}}</option>
+        </select>
+
         <p>create quick buttons for frequent purchases (eg. daily coffee)</p>
         <input type="submit" name="submit" value="Submit">
         </form>

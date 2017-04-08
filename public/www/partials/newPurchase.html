@@ -12,14 +12,15 @@
           <label class="photoUpload" for="photoUpload">upload a photo
             <input type="file" name="photo" id="photoUpload" value="" placeholder="photo">
           </label>
-          <!-- the following buttons will be for one click purchases -->
-          <button type="button" name="button">Coffee</button>
-          <button type="button" name="button">rent</button>
-          <button type="button" name="button">gas</button>
-          <button type="button" name="button">breakfast</button>
 
           <input type="submit" name="save" value="Save">
         </div>
+      </form>
+      <form ng-repeat="oneclick in oneClicks" action="http://localhost:3000/purchases/api/newPurchase" method="post">
+          <input class="hidden" type="text" name="name" value="{{oneclick.oneclick_name}}">
+          <input class="hidden" type="text" name="expense" value="{{oneclick.oneclick_expense}}">
+          <input class="hidden" type="text" name="price" value="{{oneclick.oneclick_total}}">
+          <input type="submit" value="{{oneclick.oneclick_name}}">
       </form>
     </ion-content>
   </ion-view>
