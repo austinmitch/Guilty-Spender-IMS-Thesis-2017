@@ -15,8 +15,9 @@ router.get('/api/bad', function(req,res,next){
 router.get('/api/good', function(req,res,next){
   Diologue.find(function(err,dioResponse){
     if(err) return next(err);
-    console.log(dioResponse);
-    res.json(dioResponse);
+    var dio = dioResponse[0].dio_good;
+    console.log(dio);
+    res.json(dio);
   });
 });
 

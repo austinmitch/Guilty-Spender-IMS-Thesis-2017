@@ -225,7 +225,7 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
         $scope.array = array;
       }
 
-      function mistakeCheck() {
+      function aviCheck() {
         //criteria variables
 
         //check return percetn values for the total amoutn spent
@@ -242,16 +242,31 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
         //check for mistakes one at a time
         if(percentCheck>=50 && dateCheck<=25){
           $rootScope.mistake = 'Spent too much money too early in the month';
-          $rootScope.showAvi();
+          $rootScope.showAviBad();
           console.log('spent too much too early');
           return;
         }else{
           for(var a=0;a<$scope.array.length;a++){
             if($scope.array[a]>100){
               $rootScope.mistake = 'Exceded the set amount for an expense';
-              $rootScope.showAvi();
+              $rootScope.showAviBad();
               console.log('overspent on an expense');
               return;
+            }
+          }
+          if(percentCheck<=50 && dateCheck>=75){
+            $rootScope.mistake = "haven't spent much this month!"
+            $rootScope.showAviGood();
+            console.log('spent less than half income 3/4ths into the month');
+            return;
+          }else{
+            for(var b=0;b<$scope.array.length;b++){
+              if($scope.array[b]<100 && dateCheck===100){
+                $rootScope.mistake = 'Spent less than intended for a certain expense';
+                $rootScope.showAviGood();
+                console.log('month end and you spent underbudget on a certain expense');
+                return;
+              }
             }
           }
         }
@@ -262,7 +277,7 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       angular.element(document).ready(function () {
         calcPercent();
         //mistake check requires data generated fomr calcPercent();
-        mistakeCheck();
+        aviCheck();
       });
     });
 
@@ -286,7 +301,7 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
     }).then(function(modalAvi){
       $rootScope.modalAvi = modalAvi;
     });
-    $rootScope.showAvi = function() {
+    $rootScope.showAviBad = function() {
       apiCalls.getDio('bad')
       .then(function(diologue){
         var randomPhrase = Math.floor(Math.random()*diologue.data.length);
@@ -301,6 +316,24 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       });
       $rootScope.modalAvi.show();
     };
+
+    $rootScope.showAviGood = function() {
+      apiCalls.getDio('good')
+      .then(function(diologue){
+        var randomPhrase = Math.floor(Math.random()*diologue.data.length);
+        $rootScope.phrase = diologue.data[randomPhrase];
+        console.log($rootScope.phrase);
+      });
+      apiCalls.getAvi('happy')
+      .then(function(avatar){
+        var randomAvi = Math.floor(Math.random()*avatar.data.length);
+        $rootScope.avi = avatar.data[randomAvi];
+        console.log($rootScope.avi);
+      });
+      $rootScope.modalAvi.show();
+    };
+
+
     $rootScope.hideAvi = function() {
       $rootScope.modalAvi.hide();
     };
