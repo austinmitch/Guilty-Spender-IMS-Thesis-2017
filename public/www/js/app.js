@@ -189,7 +189,7 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
               spent += purchases[k].purchase_price;
             }
           }
-        $scope.spent = spent;
+        $scope.spent = Math.round(spent*100)/100; //round to 2 decimal places
         console.log(spent);
         return spent;
       }
