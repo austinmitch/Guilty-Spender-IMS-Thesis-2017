@@ -86,7 +86,7 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
     {
       url: '/purchase',
       controller: 'PurchaseController',
-      templateUrl: 'partials/newPurchase.html'
+      templateUrl: 'partials/purchaseList.html'
     })
   .state('achievements',
     {
@@ -346,6 +346,11 @@ guiltySpender.controller('InfoController', ['$scope', '$ionicLoading', 'apiCalls
 
 guiltySpender.controller('PurchaseController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
   console.log('New Purchase Page');
+  apiCalls.getPurch('list')
+  .then(function(purchases) {
+    console.log(purchases);
+    $scope.purchases = purchases.data;
+  });
 }]);
 
 guiltySpender.controller('AchieveController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){

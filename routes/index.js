@@ -26,7 +26,8 @@ router.get('/api/home', function(req,res,next) {
       path:'user_expenses',
       populate:{
         path:'expense_purchases',
-        match:{purchase_date:{$eq:date}}
+        match:{purchase_month:{$eq:currentMonth}},
+        match:{purchase_year:{$eq:currentYear}}
       }
     })
     .exec(function(err, userHome) {

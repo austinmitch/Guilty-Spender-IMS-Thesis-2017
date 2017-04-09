@@ -37,13 +37,15 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
   var price = req.body.price;
   var currentMonth = (new Date().getMonth())+1;
   var currentYear = new Date().getFullYear();
-  var date = currentMonth+"/"+currentYear;
+  // var date = currentMonth+"/"+currentYear;
   var newPurchase = new Purchase({
     purchase_name:name,
     purchase_price:price,
     purchase_photo:photo,
-    purchase_date:date,
+    purchase_month:currentMonth,
+    purchase_year:currentYear,
     expense_id:expense,
+    user_id: global.myuser._id
   });
   newPurchase.save();
   var purchaseId = newPurchase._id;
@@ -55,6 +57,14 @@ if(err) return next(err);
 
 router.post('/api/oneclick', function(req,res,next){
   var currentUser = global.myuser._id;
+});
+
+router.get('/api/list', function(req,res,next){
+  Purchase.find({user_id:global.myuser._id}, function(err, purchases){
+    if(err) return next(err);
+    console.log(purchases);
+    res.json(purchases);
+  });
 });
 
 module.exports = router;

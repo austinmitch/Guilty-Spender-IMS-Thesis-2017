@@ -1,0 +1,34 @@
+<ion-view>
+  <ion-content>
+    <div class="content">
+      <h2>Purchases</h2>
+      <section class="details">
+        <div class="table">
+          <div class=" tableRow rowHeading">
+            <div class="td3col">
+              <p>Name</p>
+            </div>
+            <div class="td3col">
+              <p>Price</p>
+            </div>
+            <div class="td3col">
+              <p>Date</p>
+            </div>
+          </div>
+
+          <div class="tableRow" ng-repeat="purchase in purchases">
+            <div class="td3col">
+              <p>{{purchase.purchase_name}}</p>
+            </div>
+            <div class="td3col">
+              <p>${{purchase.purchase_price}}</p>
+            </div>
+            <div class="td3col">
+              <p>{{purchase.purchase_month}}/{{purchase.purchase_year}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </ion-content>
+</ion-view>

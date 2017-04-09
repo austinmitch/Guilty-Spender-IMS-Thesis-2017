@@ -244,25 +244,31 @@ input[type="submit"], button {
     font-family: "Lato", arial, sans-serif;
     font-weight: 300; }
 
-.details table {
+.details table, .details .table {
   overflow: hidden;
   border-radius: 20px;
   background-color: #fff;
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px; }
-  .details table tr {
+  .details table tr, .details table .tableRow, .details .table tr, .details .table .tableRow {
     overflow: hidden;
     padding: 10px;
     width: 100%;
     display: block;
     border-bottom: 2px solid #07df8c; }
-    .details table tr:last-child {
+    .details table tr:last-child, .details table .tableRow:last-child, .details .table tr:last-child, .details .table .tableRow:last-child {
       border-bottom: none; }
-  .details table td {
+  .details table td, .details .table td {
     width: 50%;
     display: block;
     float: left; }
-  .details table .rowHeading {
+  .details table .td3col, .details .table .td3col {
+    width: 33%;
+    display: block;
+    float: left; }
+    .details table .td3col p, .details .table .td3col p {
+      margin-bottom: 0; }
+  .details table .rowHeading, .details .table .rowHeading {
     background-color: #07a86a;
     border-bottom: none; }

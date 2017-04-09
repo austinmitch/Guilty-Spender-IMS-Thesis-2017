@@ -16,6 +16,7 @@ guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stat
   var userUrl = 'http://localhost:3000/users/api/';
   var aviUrl = 'http://localhost:3000/avatar/api/';
   var dioUrl = 'http://localhost:3000/diologue/api/';
+  var purchUrl = 'http://localhost:3000/purchases/api/'
   var apiCalls = {};
 
   apiCalls.getDetails = function(endPoint) {
@@ -29,6 +30,9 @@ guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stat
   }
   apiCalls.getDio = function(endPoint) {
     return $http.get(dioUrl+endPoint);
+  }
+  apiCalls.getPurch = function(endPoint) {
+    return $http.get(purchUrl+endPoint);
   }
   return apiCalls;
 }]);

@@ -334,7 +334,7 @@ input[type="submit"], button {
     }
 }
 .details {
-    table {
+    table, .table {
         overflow: hidden;
         border-radius: 20px;
         background-color: #fff;
@@ -343,7 +343,7 @@ input[type="submit"], button {
             top: 20px;
             bottom: 20px;
         }
-        tr {
+        tr, .tableRow {
             overflow: hidden;
             padding: 10px;
             // background-color: $darkGreen;
@@ -354,10 +354,20 @@ input[type="submit"], button {
                 border-bottom: none;
             }
         }
-        td {
+        td, {
             width: 50%;
             display: block;
             float: left;
+        }
+        .td3col {
+          width: 33%;
+          display: block;
+          float: left;
+          p {
+            margin: {
+              bottom: 0;
+            }
+          }
         }
         .rowHeading {
             background-color: $darkGreen;
