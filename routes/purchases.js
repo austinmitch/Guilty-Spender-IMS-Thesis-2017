@@ -37,7 +37,7 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
   var price = req.body.price;
   var currentMonth = (new Date().getMonth())+1;
   var currentYear = new Date().getFullYear();
-  var date = currentMonth+""+currentYear;
+  var date = currentMonth+"/"+currentYear;
   var newPurchase = new Purchase({
     purchase_name:name,
     purchase_price:price,

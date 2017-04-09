@@ -19,8 +19,8 @@ router.get('/', function(req, res, next) {
 router.get('/api/home', function(req,res,next) {
   var currentMonth = (new Date().getMonth())+1;
   var currentYear = new Date().getFullYear();
-  var date = currentMonth+""+currentYear;
-  console.log("month"+currentMonth);
+  var date = currentMonth+"/"+currentYear;
+  console.log(date);
   User.findOne({_id:global.myuser._id})
     .populate({
       path:'user_expenses',
