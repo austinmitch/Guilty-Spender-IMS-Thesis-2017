@@ -375,3 +375,16 @@ input[type="submit"], button {
         }
     }
 }
+
+////////////////////////////////////
+//PURCHASE LIST PAGE
+////////////////////////////////////
+.content {
+  .listHeading {
+    text-align: center;
+    font: {
+      family: $lato;
+      weight: 300;
+    }
+  }
+}

@@ -272,3 +272,8 @@ input[type="submit"], button {
   .details table .rowHeading, .details .table .rowHeading {
     background-color: #07a86a;
     border-bottom: none; }
+
+.content .listHeading {
+  text-align: center;
+  font-family: "Lato", arial, sans-serif;
+  font-weight: 300; }
