@@ -115,4 +115,20 @@ router.get('/api/achievements', function(req,res,next) {
   })
 });
 
+router.get('/api/:id', function(req,res,next){
+  var id = req.params.id;
+  // var id = "58b8a72bc04954048117a0a2";
+  Achievement.findOne({_id:id}, function(err, achieve){
+    res.json(achieve);
+  })
+});
+
+router.post('/api/ach/:id', function(req,res,next){
+  var achieveid = req.params.id;
+  User.update({_id:global.myuser._id}, {$push:{'user_achievements':achieveid}}, {upsert:true}, function(err){
+    if(err){console.log(err)};
+  });
+  res.send(null);
+});
+
 module.exports = router;

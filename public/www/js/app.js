@@ -135,19 +135,86 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
      console.log(expenseTotal);
      $scope.estimatedRemain = totalIncome - expenseTotal;
      console.log($scope.estimatedRemain);
+
+
+     //check all user data for empty fields
+     //check username, email, expenses, image, income
+     function dataGet() {
+       var user = $scope.profileDetails;
+       var infoFull;
+       if(user.username && user.email && user.user_expenses[0] && user.user_image && user.user_income[0]) {
+         infoFull = true;
+       }else{
+         infoFull = false;
+       }
+       return infoFull;
+     }
+
+     function dataCheck() {
+       dataGet();
+       if(dataGet()===true){
+         console.log("you filled your account!!");
+         apiCalls.getAch("58b8a72bc04954048117a0a2")
+         .then(function(achieve){
+           $scope.achieve = achieve.data;
+           console.log(achieve);
+         });
+         apiCalls.postAch("58b8a72bc04954048117a0a2");
+         $scope.openAchieve();
+         return;
+       }else{
+         console.log("you havent filled your account");
+       }
+     }
+
+     function infoAchieveCheck() {
+       var achieves = $scope.profileDetails.user_achievements;
+       console.log(achieves[0]);
+       if(!achieves[0]){
+         console.log("no achieves");
+         dataCheck();
+         return;
+       }else{
+         for(var i=0;i<achieves.length;i++){
+           if(achieves[i]==="58b8a72bc04954048117a0a2"){
+             return;
+           }else{
+             dataCheck();
+           }
+         }
+       }
+
+     }
+     infoAchieveCheck();
    });
+
+//edit profile details
    $ionicModal.fromTemplateUrl('partials/infoForm.html',{
      scope:$scope,
      animation:'slide-in-up'
    }).then(function(modal){
-     $scope.modal = modal;
+     $scope.infoModal = modal;
    });
-   $scope.openModal = function() {
-     $scope.modal.show();
+   $scope.openInfo = function() {
+     $scope.infoModal.show();
    };
-   $scope.closeModal = function() {
-     $scope.modal.hide();
+   $scope.closeInfo = function() {
+     $scope.infoModal.hide();
    };
+
+//achievement popup
+  $ionicModal.fromTemplateUrl('partials/newAchieve.html',{
+    scope:$scope,
+    animation:'slide-in-up'
+  }).then(function(modal){
+    $scope.achieveModal = modal;
+  });
+  $scope.openAchieve = function() {
+    $scope.achieveModal.show();
+  };
+  $scope.closeAchieve = function() {
+    $scope.achieveModal.hide();
+  };
 
 }]);
 
