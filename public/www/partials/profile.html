@@ -7,14 +7,16 @@
       <div class="userName">
         <h2>{{profileDetails.username}}</h2>
       </div>
-      <form class="" action="http://localhost:3000/users/api/profile" method="post" enctype="multipart/form-data">
+      <!-- form for editing username and profile image. uncomment and style if time allows -->
+      <!-- <form class="" action="http://localhost:3000/users/api/profile" method="post" enctype="multipart/form-data">
         <label for="infoUpdate">
           <input type="file" name="profilePic" id="infoUpdate" value="">
         </label>
         <label for="username">Username</label>
         <input type="text" name="username" value="">
         <input type="submit" name="submit" value="Submit">
-      </form>
+      </form> -->
+
       <div class="details">
         <table>
           <tr class="rowHeading" ng-click="showIncome = !showIncome">

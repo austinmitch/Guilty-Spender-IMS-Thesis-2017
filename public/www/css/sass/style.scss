@@ -388,3 +388,51 @@ input[type="submit"], button {
     }
   }
 }
+
+/////////////////////////////////////
+//ACHIEVEMENT POPUP
+////////////////////////////////////
+.content {
+  .congrats {
+    // color: $green;
+    text-align: center;
+    text-transform: uppercase;
+    font: {
+      size: 2em;
+      family: $lato;
+    }
+  }
+  .achieve {
+    width: 60%;
+    margin: {
+      left: 20%;
+      right: 20%;
+      top: 30px;
+      bottom: 15px;
+    }
+    padding: 5px;
+    border: dashed 3px $darkGreen;
+    border-radius: 100%;
+  }
+  .achName {
+    text-align: center;
+    margin: {
+      top: 40px;
+      bottom: 40px;
+    }
+  }
+  .achMessage {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: $darkGreen;
+    line-height: 1.6em;
+    font: {
+      family: $lato;
+      size: 1.3em;
+    }
+    margin: {
+      bottom: 20px;
+    }
+  }
+}

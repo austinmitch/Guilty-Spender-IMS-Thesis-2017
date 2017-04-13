@@ -277,3 +277,34 @@ input[type="submit"], button {
   text-align: center;
   font-family: "Lato", arial, sans-serif;
   font-weight: 300; }
+
+.content .congrats {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2em;
+  font-family: "Lato", arial, sans-serif; }
+
+.content .achieve {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 5px;
+  border: dashed 3px #07a86a;
+  border-radius: 100%; }
+
+.content .achName {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+.content .achMessage {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #07a86a;
+  line-height: 1.6em;
+  font-family: "Lato", arial, sans-serif;
+  font-size: 1.3em;
+  margin-bottom: 20px; }

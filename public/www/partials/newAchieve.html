@@ -1,11 +1,13 @@
 <ion-modal-view>
   <ion-view>
     <ion-content>
-      <h3>Congrats!!!</h3>
-      <img ng-src="img/achievements/{{achieve.ach_image}}" alt="{{achieve.ach_name}}">
-      <h2>{{achieve.ach_name}}</h2>
-      <p>{{achieve.ach_message}}</p>
-      <button ng-click="closeAchieve()">Dismiss</button>
+      <div class="content">
+        <h3 class="congrats">Achievement</h3>
+        <img class="achieve" ng-src="img/achievements/{{achieve.ach_image}}" alt="{{achieve.ach_name}}">
+        <h2 class="achName">{{achieve.ach_name}}</h2>
+        <p class="achMessage">{{achieve.ach_message}}</p>
+        <button ng-click="closeAchieve()">Dismiss</button>
+      </div>
     </ion-content>
   </ion-view>
 </ion-modal-view>

@@ -186,7 +186,56 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
 
      }
      infoAchieveCheck();
+
+     //second achievement
+     //if the user has set up their cone click purchases
+     function oneClickGet() {
+       var user = $scope.profileDetails;
+       var oneclick;
+       if(user.user_oneclick[0]){
+         oneclick = true;
+       }else{
+         oneclick = false;
+       }
+       return oneclick;
+     }
+
+     function oneClickCheck() {
+       if(oneClickGet()===true){
+         apiCalls.getAch("58eed5a8b348e797e3cb8a88")
+         .then(function(achieve){
+           $scope.achieve = achieve.data;
+           console.log(achieve);
+         });
+         apiCalls.postAch("58eed5a8b348e797e3cb8a88");
+         $scope.openAchieve();
+         return;
+       }else{
+         console.log("no oneclicks yet");
+       }
+     }
+
+     function oneClickAchieveCheck() {
+       var achieves = $scope.profileDetails.user_achievements;
+       console.log(achieves[0]);
+       if(!achieves[0]){
+         console.log("no achieves");
+         oneClickCheck();
+         return;
+       }else{
+         for(var j=0;j<achieves.length;j++){
+           if(achieves[j]==="58eed5a8b348e797e3cb8a88"){
+             return;
+           }else{
+             oneClickCheck();
+           }
+         }
+       }
+     }
+     oneClickAchieveCheck();
+
    });
+
 
 //edit profile details
    $ionicModal.fromTemplateUrl('partials/infoForm.html',{
