@@ -436,3 +436,24 @@ input[type="submit"], button {
     }
   }
 }
+/////////////////////////////////////
+//PURCHSE DETAILS PAGE
+////////////////////////////////////
+.content {
+  .listHeading {
+    text-transform: capitalize;
+  }
+  .details {
+    .table {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  button {
+    a {
+      color: $darkGreen;
+      text-decoration: none;
+    }
+  }
+}

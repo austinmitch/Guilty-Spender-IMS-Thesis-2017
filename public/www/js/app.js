@@ -7,6 +7,9 @@ var guiltySpender = angular.module('guiltySpender', ['ionic', 'ui.router', 'ngSa
 
 .run(function($ionicPlatform,$rootScope,$location,$ionicModal) {
 
+  $rootScope.home = function() {
+    $location.path('home');
+  };
   //display date at top of every page
   function dateCount() {
     var now = new Date();

@@ -308,3 +308,13 @@ input[type="submit"], button {
   font-family: "Lato", arial, sans-serif;
   font-size: 1.3em;
   margin-bottom: 20px; }
+
+.content .listHeading {
+  text-transform: capitalize; }
+
+.content .details .table img {
+  max-width: 100%; }
+
+.content button a {
+  color: #07a86a;
+  text-decoration: none; }
