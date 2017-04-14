@@ -6,6 +6,7 @@ var purchaseSchema = new mongoose.Schema({
   purchase_photo:String,
   purchase_month:Number,
   purchase_year:Number,
+  expense_id:{type:mongoose.Schema.Types.ObjectId, ref:'Expense'},
   user_id:{type:mongoose.Schema.Types.ObjectId, ref:'User'}
 });
 

@@ -102,7 +102,7 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
     })
   .state('details',
     {
-      url: '/details',
+      url: '/details/:purchid',
       controller: 'DetailsController',
       templateUrl: 'partials/purchaseDetails.html'
     });
@@ -478,8 +478,29 @@ guiltySpender.controller('AchieveController', ['$scope', '$ionicLoading', 'apiCa
   });
 }]);
 
-guiltySpender.controller('DetailsController', ['$scope', '$ionicLoading', 'apiCalls', '$http', function($scope, $ionicLoading, apiCalls, $http){
-
+guiltySpender.controller('DetailsController', ['$scope', '$ionicLoading', 'apiCalls', '$http', '$stateParams', function($scope, $ionicLoading, apiCalls, $http, $stateParams){
+  console.log('Details page');
+  apiCalls.getPurch($stateParams.purchid)
+  .then(function(purchDetails){
+    $scope.purchDetails = purchDetails.data;
+    console.log($scope.purchDetails);
+    var month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    var monthNo = purchDetails.data.purchase_month-1;
+    $scope.month = month[monthNo];
+  });
 }]);
 
 guiltySpender.controller('UploadController', ['$scope', '$ionicLoading', 'apiCalls', '$http', function($scope, $ionicLoading, apiCalls, $http){

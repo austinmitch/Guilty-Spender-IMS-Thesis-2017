@@ -1,1 +1,56 @@
-<h1>single purchase details</h1>
+<ion-view>
+  <ion-content>
+    <div class="content">
+      <h2 class="listHeading">{{purchDetails.purchase_name}}</h2>
+
+      <section class="details">
+        <div class="table">
+          <div class=" tableRow rowHeading">
+            <div class="td1col">
+              <p>Expense</p>
+            </div>
+          </div>
+          <div class="tableRow">
+            <div class="td1col">
+              <p>{{purchDetails.expense_id.expense_name}}</p>
+            </div>
+          </div>
+
+        <div class=" tableRow rowHeading">
+          <div class="td1col">
+            <p>Price</p>
+          </div>
+        </div>
+        <div class="tableRow">
+          <div class="td1col">
+            <p>{{purchDetails.purchase_price}}</p>
+          </div>
+        </div>
+
+        <div class=" tableRow rowHeading">
+          <div class="td1col">
+            <p>Date</p>
+          </div>
+        </div>
+        <div class="tableRow">
+          <div class="td1col">
+            <p>{{month}} {{purchDetails.purchase_year}}</p>
+          </div>
+        </div>
+
+        <div class=" tableRow rowHeading">
+          <div class="td1col">
+            <p>Photo</p>
+          </div>
+        </div>
+        <div class="tableRow">
+          <div class="td1col">
+            <img ng-src="img/reciept/{{purchDetails.purchase_photo}}" alt="{{purchDetails.purchase_name}}">
+          </div>
+        </div>
+        </div>
+      </section>
+
+    </div>
+  </ion-content>
+</ion-view>

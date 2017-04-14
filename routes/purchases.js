@@ -67,4 +67,16 @@ router.get('/api/list', function(req,res,next){
   });
 });
 
+router.get('/api/:id', function(req,res,next){
+  var purchId = req.params.id;
+  console.log(purchId);
+  Purchase.findOne({_id:purchId})
+  .populate('expense_id')
+  .exec(function(err, purchDetails){
+    if(err){console.log(err);}
+    console.log(purchDetails);
+    res.json(purchDetails);
+  })
+});
+
 module.exports = router;
