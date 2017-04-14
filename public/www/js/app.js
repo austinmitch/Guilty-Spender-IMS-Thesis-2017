@@ -249,7 +249,7 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
        element.append(label[0]);
        element.append(name[0]);
        element.append(total[0]);
-       $scope.inputNo = inputNo;
+       $scope.inputNo = inputNo+1;
      }
 
    });

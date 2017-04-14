@@ -47,21 +47,31 @@ router.post('/api/infoinput', function(req,res,next) {
   }
 
 //expense stuff
+var expenseName0 = req.body.expenseName0;
+var expenseTotal0 = req.body.expenseTotal0;
+if(expenseName0 && expenseTotal0) {
+  var expenseNo = req.body.expenseNumber;
+  var expenses = {};
+    for(var i=0;i<expenseNo;i++){
+      // expenses["expense"+i] = req.body.expenseName+i;
+      var expenseName = req.body["expenseName"+i];
+      var expenseTotal = req.body["expenseTotal"+i];
 
-  if(expenseName && expenseTotal) {
-    var newExpense = new Expense ({
-      expense_name: expenseName,
-      expense_price: expenseTotal,
-      user_id: currentUser
-    });
-    newExpense.save();
-    var expenseId = newExpense._id;
-    User.update({_id:currentUser}, {$push: {'user_expenses':expenseId}},{upsert:true}, function(err) {
-      if(err) {
-        console.log(err);
-      }
-    });
+      var newExpense = new Expense ({
+        expense_name: expenseName,
+        expense_price: expenseTotal,
+        user_id: currentUser
+      });
+      newExpense.save();
+      var expenseId = newExpense._id;
+      User.update({_id:currentUser}, {$push: {'user_expenses':expenseId}},{upsert:true}, function(err) {
+        if(err) {
+          console.log(err);
+        }
+      });
+
   }
+}
 
   //one click purchases
   if(oneClickName && oneClickTotal) {
