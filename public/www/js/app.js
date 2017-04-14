@@ -175,13 +175,12 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
          dataCheck();
          return;
        }else{
-         for(var i=0;i<achieves.length;i++){
-           if(achieves[i]==="58b8a72bc04954048117a0a2"){
+           if(achieves.indexOf("58b8a72bc04954048117a0a2")!=-1){
+             console.log("achievement already present");
              return;
            }else{
              dataCheck();
            }
-         }
        }
 
      }
@@ -223,17 +222,18 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
          oneClickCheck();
          return;
        }else{
-         for(var j=0;j<achieves.length;j++){
-           if(achieves[j]==="58eed5a8b348e797e3cb8a88"){
+         //indexOf return -1 if the element is not present otherwise it
+         //returns the number of the element in the array
+           if(achieves.indexOf("58eed5a8b348e797e3cb8a88")!=-1){
+             console.log("achievement already present");
              return;
            }else{
              oneClickCheck();
            }
-         }
        }
+
      }
      oneClickAchieveCheck();
-
    });
 
 
