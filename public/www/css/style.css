@@ -181,14 +181,18 @@ input[type="submit"], button {
   border-radius: 30px;
   margin-bottom: 25px;
   background-color: #fff; }
-  .expenseInfo h1 {
-    text-transform: uppercase;
-    padding: 15px 0 15px 20px;
-    margin-bottom: 0;
-    color: #07a86a;
-    float: left;
-    font-weight: 300;
-    font-size: 1em; }
+  .expenseInfo .expenseTitle {
+    max-width: 30%;
+    overflow-x: hidden;
+    float: left; }
+    .expenseInfo .expenseTitle h1 {
+      width: 150%;
+      text-transform: uppercase;
+      padding: 15px 0 15px 20px;
+      margin-bottom: 0;
+      color: #07a86a;
+      font-weight: 300;
+      font-size: 1em; }
   .expenseInfo .progressBar {
     float: right;
     width: 55%;
@@ -318,3 +322,11 @@ input[type="submit"], button {
 .content button a {
   color: #07a86a;
   text-decoration: none; }
+
+.content .addExpense {
+  width: 20%;
+  height: 25px;
+  padding: 0;
+  margin-bottom: 0;
+  float: right;
+  font-size: 1em; }

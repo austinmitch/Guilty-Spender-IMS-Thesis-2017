@@ -17,7 +17,9 @@
       <section ng-repeat="expense in userDetails.user_expenses" class="expenseInfo"  ng-click="showDiv = !showDiv">
         <div class="expense" id="{{expense.expense_name}}">
           <div>
-            <h1>{{expense.expense_name}}</h1>
+            <div class="expenseTitle">
+              <h1>{{expense.expense_name}}</h1>
+            </div>
             <div class="progressBar">
               <div class="progressBarFill"></div>
             </div>

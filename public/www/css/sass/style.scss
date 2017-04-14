@@ -243,16 +243,21 @@ input[type="submit"], button {
         bottom: 25px;
     }
     background-color: #fff;
-    h1 {
+    .expenseTitle {
+      max-width: 30%;
+      overflow-x: hidden;
+      float: left;
+      h1 {
+        width: 150%;
         text-transform: uppercase;
         padding: 15px 0 15px 20px;
         margin-bottom: 0;
         color: $darkGreen;
-        float: left;
         font: {
-            weight: 300;
-            size: 1em;
+          weight: 300;
+          size: 1em;
         }
+      }
     }
     .progressBar {
         float: right;
@@ -454,6 +459,22 @@ input[type="submit"], button {
     a {
       color: $darkGreen;
       text-decoration: none;
+    }
+  }
+}
+
+/////////////////////////////////////
+//INFO INPUT (possible just button)
+////////////////////////////////////
+.content {
+  .addExpense {
+    width: 20%;
+    height: 25px;
+    padding: 0;
+    margin-bottom: 0;
+    float: right;
+    font: {
+      size: 1em;
     }
   }
 }
