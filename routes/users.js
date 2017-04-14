@@ -35,8 +35,6 @@ router.post('/api/infoinput', function(req,res,next) {
   var income = req.body.income;
   var freq = req.body.freq;
   var account = req.body.account;
-  var expenseName = req.body.expenseName;
-  var expenseTotal = req.body.expenseTotal;
   var oneClickName = req.body.oneClickName;
   var oneClickTotal = req.body.oneClickTotal;
   var oneClickExpense = req.body.oneClickExpense;
@@ -47,6 +45,9 @@ router.post('/api/infoinput', function(req,res,next) {
       }
     });
   }
+
+//expense stuff
+
   if(expenseName && expenseTotal) {
     var newExpense = new Expense ({
       expense_name: expenseName,

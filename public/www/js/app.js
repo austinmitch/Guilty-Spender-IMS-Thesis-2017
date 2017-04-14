@@ -237,6 +237,21 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
 
      }
      oneClickAchieveCheck();
+
+     var inputNo = 0;
+     $scope.append = function append() {
+       inputNo++;
+       console.log(inputNo);
+       var element = document.querySelector("#expenses");
+       var label = angular.element('<label for="expenseName">expense '+inputNo+'</label>');
+       var name = angular.element('<input type="text" name="expenseName'+inputNo+'" value="" placeholder="NAME">');
+       var total = angular.element('<input type="text" name="expenseTotal'+inputNo+'" value="" placeholder="$ MONTHLY TOTAL">');
+       element.append(label[0]);
+       element.append(name[0]);
+       element.append(total[0]);
+       $scope.inputNo = inputNo;
+     }
+
    });
 
 

@@ -17,9 +17,13 @@
         <label for="account">bank account(s)</label>
         <input type="text" name="account" value="" placeholder="NAME">
 
-        <label for="expenseName">expenses</label>
-        <input type="text" name="expenseName" value="" placeholder="NAME">
-        <input type="text" name="expenseTotal" value="" placeholder="$ MONTHLY TOTAL">
+        <div id="expenses">
+          <input class="hidden" type="text" name="expenseNumber" value="{{inputNo}}">
+          <button type="button" name="button" ng-click="append()">append</button>
+          <label for="expenseName">expenses</label>
+          <input type="text" name="expenseName0" value="" placeholder="NAME">
+          <input type="text" name="expenseTotal0" value="" placeholder="$ MONTHLY TOTAL">
+        </div>
 
         <label for="oneClickName">one click purchases</label>
         <input type="text" name="oneClickName" value="" placeholder="NAME">
