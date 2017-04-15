@@ -53,7 +53,6 @@ if(expenseName0 && expenseTotal0) {
   var expenseNo = req.body.expenseNumber;
   var expenses = {};
     for(var i=0;i<expenseNo;i++){
-      // expenses["expense"+i] = req.body.expenseName+i;
       var expenseName = req.body["expenseName"+i];
       var expenseTotal = req.body["expenseTotal"+i];
 
@@ -74,6 +73,23 @@ if(expenseName0 && expenseTotal0) {
 }
 
   //one click purchases
+  var oneclickNo = req.body.oneclickNumber;
+  console.log(oneclickNo);
+  // var oneclicks = {};
+  for(var i=0;i<oneclickNo;i++){
+    var oneClickName = req.body["oneClickName"+i];
+    var oneClickTotal = req.body["oneClickTotal"+i];
+    var oneClickExpense = req.body["oneClickExpense"+i];
+
+      User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
+        oneclick_name:oneClickName,
+        oneclick_total:oneClickTotal,
+        oneclick_expense:oneClickExpense
+      }}},{upsert:true}, function(err){
+          if(err) return next(err);
+      });
+
+  }
 
 
   // if(oneClickName && oneClickTotal) {

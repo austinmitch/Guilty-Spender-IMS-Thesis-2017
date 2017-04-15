@@ -277,7 +277,7 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
       //  element.append(expenseOpen[0]);
       //  element.append(expenseOptions[0]);
       //  element.append(expenseClose[0]);
-       $scope.onclickNo = oneclickNo;
+       $scope.oneclickNo = oneclickNo+1;
      }
 
    });
