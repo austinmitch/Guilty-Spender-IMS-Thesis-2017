@@ -35,9 +35,6 @@ router.post('/api/infoinput', function(req,res,next) {
   var income = req.body.income;
   var freq = req.body.freq;
   var account = req.body.account;
-  // var oneClickName = req.body.oneClickName;
-  // var oneClickTotal = req.body.oneClickTotal;
-  // var oneClickExpense = req.body.oneClickExpense;
   if(income) {
     User.update({_id:currentUser}, {$set: {'user_income':{'income_total':income,'income_frequency':freq}}},{upsert:true}, function(err) {
       if(err) {
@@ -51,7 +48,6 @@ var expenseName0 = req.body.expenseName0;
 var expenseTotal0 = req.body.expenseTotal0;
 if(expenseName0 && expenseTotal0) {
   var expenseNo = req.body.expenseNumber;
-  var expenses = {};
     for(var i=0;i<expenseNo;i++){
       var expenseName = req.body["expenseName"+i];
       var expenseTotal = req.body["expenseTotal"+i];
@@ -75,7 +71,6 @@ if(expenseName0 && expenseTotal0) {
   //one click purchases
   var oneclickNo = req.body.oneclickNumber;
   console.log(oneclickNo);
-  // var oneclicks = {};
   for(var i=0;i<oneclickNo;i++){
     var oneClickName = req.body["oneClickName"+i];
     var oneClickTotal = req.body["oneClickTotal"+i];
@@ -90,17 +85,6 @@ if(expenseName0 && expenseTotal0) {
       });
 
   }
-
-
-  // if(oneClickName && oneClickTotal) {
-  //   User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
-  //     oneclick_name:oneClickName,
-  //     oneclick_total:oneClickTotal,
-  //     oneclick_expense:oneClickExpense
-  //   }}},{upsert:true}, function(err){
-  //       if(err) return next(err);
-  //   });
-  // }
 
   res.redirect(config.urlBase+'home');
 

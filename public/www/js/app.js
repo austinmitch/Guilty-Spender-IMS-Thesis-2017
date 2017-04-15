@@ -139,6 +139,13 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
      $scope.estimatedRemain = totalIncome - expenseTotal;
      console.log($scope.estimatedRemain);
 
+     //delete an expense
+     $scope.delete = function(id){
+       apiCalls.deleteEx(id)
+       .then(function(){
+         console.log("deleted");
+       });
+     }
 
      //check all user data for empty fields
      //check username, email, expenses, image, income

@@ -38,6 +38,7 @@
           <tr ng-repeat="expense in profileDetails.user_expenses" ng-show="!showExpense">
             <td>{{expense.expense_name}}</td>
             <td>${{expense.expense_price}}</td>
+            <td><button type="button" ng-click="delete('{{expense._id}}')">delete</button></td>
           </tr>
         </table>
       </div>
