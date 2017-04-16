@@ -441,6 +441,60 @@ input[type="submit"], button {
     }
   }
 }
+
+/////////////////////////////////////
+//ACHIEVEMENT LIST PAGE
+////////////////////////////////////
+.content {
+  .achievementList {
+    overflow:hidden;
+    .achievement {
+      width: 33.333%;
+      float: left;
+      img {
+        width: 94%
+        margin: 3%;
+      }
+      .achDetails {
+        background-color: #fff;
+        border-radius: 30px;
+        position: relative;
+        width: 300%;
+        top: 100%;
+        left: 0;
+        h3 {
+          border-top-right-radius: 30px;
+          border-top-left-radius: 30px;
+          background-color: $darkGreen;
+          padding: {
+            top: 7px;
+            left: 20px;
+            right: 20px;
+            bottom: 5px;
+          }
+        }
+        p {
+          padding: {
+            left: 20px;
+            right: 20px;
+            bottom: 15px;
+          }
+        }
+      }
+      &:nth-child(3n+2) {
+        .achDetails {
+          left: -100%;
+        }
+      }
+      &:nth-child(3n+3) {
+        .achDetails {
+          left: -200%;
+        }
+      }
+    }
+  }
+}
+
 /////////////////////////////////////
 //PURCHSE DETAILS PAGE
 ////////////////////////////////////

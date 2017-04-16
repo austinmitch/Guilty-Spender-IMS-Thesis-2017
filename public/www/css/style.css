@@ -313,6 +313,37 @@ input[type="submit"], button {
   font-size: 1.3em;
   margin-bottom: 20px; }
 
+.content .achievementList {
+  overflow: hidden; }
+  .content .achievementList .achievement {
+    width: 33.333%;
+    float: left; }
+    .content .achievementList .achievement img {
+      margin: 3%; }
+    .content .achievementList .achievement .achDetails {
+      background-color: #fff;
+      border-radius: 30px;
+      position: relative;
+      width: 300%;
+      top: 100%;
+      left: 0; }
+      .content .achievementList .achievement .achDetails h3 {
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        background-color: #07a86a;
+        padding-top: 7px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 5px; }
+      .content .achievementList .achievement .achDetails p {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 15px; }
+    .content .achievementList .achievement:nth-child(3n+2) .achDetails {
+      left: -100%; }
+    .content .achievementList .achievement:nth-child(3n+3) .achDetails {
+      left: -200%; }
+
 .content .listHeading {
   text-transform: capitalize; }
 
