@@ -46,9 +46,29 @@ router.post('/api/infoinput', function(req,res,next) {
 //expense stuff
 var expenseName0 = req.body.expenseName0;
 var expenseTotal0 = req.body.expenseTotal0;
+
 if(expenseName0 && expenseTotal0) {
+
+  //first element
+  var expenseName = req.body.expenseName0;
+  var expenseTotal = req.body.expenseTotal0;
+
+  var newExpense = new Expense ({
+    expense_name: expenseName,
+    expense_price: expenseTotal,
+    user_id: currentUser
+  });
+  newExpense.save();
+  var expenseId = newExpense._id;
+  User.update({_id:currentUser}, {$push: {'user_expenses':expenseId}},{upsert:true}, function(err) {
+    if(err) {
+      console.log(err);
+    }
+  });
+
+  //all the other ones
   var expenseNo = req.body.expenseNumber;
-    for(var i=0;i<expenseNo;i++){
+    for(var i=1;i<expenseNo;i++){
       var expenseName = req.body["expenseName"+i];
       var expenseTotal = req.body["expenseTotal"+i];
 
@@ -69,6 +89,19 @@ if(expenseName0 && expenseTotal0) {
 }
 
   //one click purchases
+  //first one
+  var oneClickName = req.body.oneClickName0;
+  var oneClickTotal = req.body.oneClickTotal0;
+  var oneClickExpense = req.body.oneClickExpense0;
+  User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
+    oneclick_name:oneClickName,
+    oneclick_total:oneClickTotal,
+    oneclick_expense:oneClickExpense
+  }}},{upsert:true}, function(err){
+      if(err) return next(err);
+  });
+
+  //any past the first one
   var oneclickNo = req.body.oneclickNumber;
   console.log(oneclickNo);
   for(var i=0;i<oneclickNo;i++){
