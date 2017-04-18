@@ -26,7 +26,7 @@ p, a, h1, h2, h3, h4, h5, h6 {
   .headerBar .navButton {
     width: 25%; }
   .headerBar .date {
-    width: 50%;
+    width: 75%;
     color: #84f7c6;
     text-align: center;
     margin-top: 7px;
@@ -319,6 +319,7 @@ input[type="submit"], button {
     width: 33.333%;
     float: left; }
     .content .achievementList .achievement img {
+      width: 94%;
       margin: 3%; }
     .content .achievementList .achievement .achDetails {
       background-color: #fff;

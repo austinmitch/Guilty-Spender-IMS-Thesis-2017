@@ -511,6 +511,49 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
 
 guiltySpender.controller('InfoController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
   console.log('Info Form Page');
+
+  var expenseNo = 0;
+  $scope.appendEx = function() {
+    expenseNo++;
+    console.log(expenseNo);
+    var element = document.querySelector("#expenses");
+    var label = angular.element('<label for="expenseName'+expenseNo+'">expense '+expenseNo+'</label>');
+    var name = angular.element('<input type="text" name="expenseName'+expenseNo+'" value="" placeholder="NAME">');
+    var total = angular.element('<input type="text" name="expenseTotal'+expenseNo+'" value="" placeholder="$ MONTHLY TOTAL">');
+    element.append(label[0]);
+    element.append(name[0]);
+    element.append(total[0]);
+    $scope.expenseNo = expenseNo+1;
+  }
+
+  var oneclickNo = 0;
+  $scope.appendOC = function() {
+    oneclickNo++;
+    console.log(oneclickNo);
+    var element = document.querySelector("#oneclicks");
+    var label = angular.element('<label for="oneClickName'+oneclickNo+'">one click purchases</label>');
+    var name = angular.element('<input type="text" name="oneClickName'+oneclickNo+'" value="" placeholder="NAME">');
+    var total = angular.element('<input type="text" name="oneClickTotal'+oneclickNo+'" value="" placeholder="$ PRICE">');
+    var expenseOpen = angular.element('<select name="oneClickExpense'+oneclickNo+'">');
+    var expenseOpts = "";
+    for(var i=0;i<$scope.expenses.length;i++){
+     expenseOpts  += '<option value="'+$scope.expenses[i]._id+'">'+$scope.expenses[i].expense_name+'</option>';
+    }
+
+    var expenseOptions = angular.element(expenseOpts);
+    var expenseClose = angular.element('</select>');
+
+    var expense = angular.element('<select name="oneClickExpense'+oneclickNo+'">'+expenseOpts+'</select>');
+    element.append(label[0]);
+    element.append(name[0]);
+    element.append(total[0]);
+    element.append(expense[0]);
+   //  element.append(expenseOpen[0]);
+   //  element.append(expenseOptions[0]);
+   //  element.append(expenseClose[0]);
+    $scope.oneclickNo = oneclickNo+1;
+  }
+  
 }]);
 
 guiltySpender.controller('PurchaseController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){

@@ -1,13 +1,100 @@
-/*Guilty Spender Database*/
-/*Database Name = guilty_spender*/
-/*collection names = users, incomes, expenses, purchases*/
+db.achievements.insert({
+        "_id" : ObjectId("58b8a72bc04954048117a0a2"),
+        "ach_name" : "Made An Account",
+        "ach_image" : "account.svg",
+        "ach_number" : 1,
+        "ach_message" : "successfully set up a your account"
+}
+{
+        "_id" : ObjectId("58eed5a8b348e797e3cb8a88"),
+        "ach_name" : "One Click Setup",
+        "ach_image" : "oneclick.svg",
+        "ach_number" : 2,
+        "ach_message" : "Set up your one click purchases"
+})
 
-/*creating first entry to make the database*/
 
-db.users.insert({"username":"austin","email":"amitch@email.com","password":"password","user_income":[],"user_expenses":[],"user_purchases":[],"user_achievements":[]})
-db.incomes.insert({"income_name":"primary","income_total":1200,"user_id":""})
-db.expenses.insert({"expense_name":"food","expense_price":100,"expense_purchases":[],"user_id":""})
-db.purchases.insert({"purchase_name":"coffee","purchase_price":1.90,"purchase_photo":"photo123341243523.jpg","expense_id":"","user_id":""})
-db.avatars.insert({"avatar_happy":[],"avatar_angry":[]})
-db.diologues.insert({"dio_good":[],"dio_bad":[],"dio_very_good":[],"dio_very_bad":[]})
-db.achievements.insert({"ach_name":"Made An Account","ach_image":"","ach_number":1,"ach_message":"Congrats On Setting Up Your Account"})
+db.avatars.insert({
+        "_id" : ObjectId("58d82f602c734d715e0a8789"),
+        "avatar_happy" : [
+                "happy01.svg",
+                "happy02.svg",
+                "happy03.svg",
+                "happy04.svg",
+                "happy05.svg",
+                "happy06.svg",
+                "happy07.svg",
+                "happy08.svg",
+                "happy09.svg",
+                "happy10.svg",
+                "happy11.svg",
+                "happy12.svg",
+                "happy13.svg",
+                "happy14.svg",
+                "happy15.svg",
+                "happy16.svg",
+                "happy17.svg",
+                "happy18.svg",
+                "happy19.svg",
+                "happy20.svg",
+                "happy21.svg",
+                "happy22.svg",
+                "happy23.svg",
+                "happy24.svg",
+                "happy25.svg",
+                "happy26.svg",
+                "happy27.svg",
+                "happy28.svg",
+                "happy29.svg",
+                "happy30.svg"
+        ],
+        "avatar_angry" : [
+                "angry01.svg",
+                "angry02.svg",
+                "angry03.svg",
+                "angry04.svg",
+                "angry05.svg",
+                "angry06.svg",
+                "angry07.svg",
+                "angry08.svg",
+                "angry09.svg",
+                "angry10.svg",
+                "angry11.svg",
+                "angry12.svg",
+                "angry13.svg",
+                "angry14.svg",
+                "angry15.svg",
+                "angry16.svg",
+                "angry17.svg",
+                "angry18.svg",
+                "angry19.svg",
+                "angry20.svg",
+                "angry21.svg",
+                "angry22.svg",
+                "angry23.svg",
+                "angry24.svg",
+                "angry25.svg",
+                "angry26.svg",
+                "angry27.svg",
+                "angry28.svg",
+                "angry29.svg",
+                "angry30.svg"
+        ]
+})
+
+
+db.diologues.insert({
+        "_id" : ObjectId("58b8a72bc04954048117a0a1"),
+        "dio_good" : [
+                "You're doing really well this month keep up the good work",
+                "Good job on the lack of spending!",
+                "I noticed you've been keeping to youre budget pretty well this month! Good Job"
+        ],
+        "dio_bad" : [
+                "Hey! Did you really need that? C'mon, get your act together",
+                "That was probably a msistake... I mean did you really need to spend that...",
+                "You're not doing great... You made a plan now stick to it."
+        ],
+        "dio_very_good" : [ ],
+        "dio_very_bad" : [ ]
+})
