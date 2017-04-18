@@ -92,31 +92,34 @@ if(expenseName0 && expenseTotal0) {
   //first one
   var oneClickName = req.body.oneClickName0;
   var oneClickTotal = req.body.oneClickTotal0;
-  var oneClickExpense = req.body.oneClickExpense0;
-  User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
-    oneclick_name:oneClickName,
-    oneclick_total:oneClickTotal,
-    oneclick_expense:oneClickExpense
-  }}},{upsert:true}, function(err){
-      if(err) return next(err);
-  });
 
-  //any past the first one
-  var oneclickNo = req.body.oneclickNumber;
-  console.log(oneclickNo);
-  for(var i=0;i<oneclickNo;i++){
-    var oneClickName = req.body["oneClickName"+i];
-    var oneClickTotal = req.body["oneClickTotal"+i];
-    var oneClickExpense = req.body["oneClickExpense"+i];
+  if(oneClickName && oneClickTotal) {
+    var oneClickExpense = req.body.oneClickExpense0;
+    User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
+      oneclick_name:oneClickName,
+      oneclick_total:oneClickTotal,
+      oneclick_expense:oneClickExpense
+    }}},{upsert:true}, function(err){
+      if(err) return next(err);
+    });
+
+    //any past the first one
+    var oneclickNo = req.body.oneclickNumber;
+    console.log(oneclickNo);
+    for(var i=0;i<oneclickNo;i++){
+      var oneClickName = req.body["oneClickName"+i];
+      var oneClickTotal = req.body["oneClickTotal"+i];
+      var oneClickExpense = req.body["oneClickExpense"+i];
 
       User.update({_id:global.myuser._id},{$push:{'user_oneclick':{
         oneclick_name:oneClickName,
         oneclick_total:oneClickTotal,
         oneclick_expense:oneClickExpense
       }}},{upsert:true}, function(err){
-          if(err) return next(err);
+        if(err) return next(err);
       });
 
+    }
   }
 
   res.redirect(config.urlBase+'home');
