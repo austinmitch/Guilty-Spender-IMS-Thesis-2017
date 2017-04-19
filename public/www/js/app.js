@@ -190,6 +190,8 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
 
       //calculate the percentage of the expense tat has been spent
       function calcPercent() {
+        var array = [];//will contain percent values
+
         var barFill = document.getElementsByClassName("progressBarFill");
         console.log(barFill);
         var percExpense = $scope.userDetails.user_expenses;
@@ -201,36 +203,52 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
             console.log('purch '+purchaseTotal);
           }
           console.log(purchaseTotal);
-          var percent = math.calcPercent(purchaseTotal,percExpense[l].expense_price)
-          // var percent = ((purchaseTotal / percExpense[l].expense_price)*100);
+          var percent = math.calcPercent(purchaseTotal,percExpense[l].expense_price);
+          array.push(percent);//to be checked by avatar display function
           console.log('percent '+percent);
           barFill[l].style.width = percent+'%';
         }
+        $scope.array = array;
       }
 
-      //first angry avi
-      //if user is 25% into the month
-      //and has spend 50% of one total budget
-      function overspent() {
-        var percentCheck;
-        percentCheck = math.calcPercent($scope.spent,$scope.totalIncome);
-        console.log('total% '+percentCheck);
+      function mistakeCheck() {
+        //criteria variables
 
-        var dateCheck;
-        dateCheck = math.calcPercent($rootScope.day,$rootScope.month)
+        //check return percetn values for the total amoutn spent
+        //against the total monthly income and for the length of time
+        //into the current month
+        var percentCheck = math.calcPercent($scope.spent,$scope.totalIncome);
+        console.log('total% '+percentCheck);
+        var dateCheck = math.calcPercent($rootScope.day, $rootScope.month);
         console.log('date% '+dateCheck);
 
-        if(percentCheck >= 50 && dateCheck <= 25) {
+        //check if any combined purchase totals exceed the amount
+        //alotted for that expense
+
+        //check for mistakes one at a time
+        if(percentCheck>=50 && dateCheck<=25){
+          $rootScope.mistake = 'Spent too much money too early in the month';
           $rootScope.showAvi();
           console.log('spent too much too early');
+          return;
+        }else{
+          for(var a=0;a<$scope.array.length;a++){
+            if($scope.array[a]>100){
+              $rootScope.mistake = 'Exceded the set amount for an expense';
+              $rootScope.showAvi();
+              console.log('overspent on an expense');
+              return;
+            }
+          }
         }
       }
-      overspent();
 
       //run function after the page loads
       //otherwise the progress bar fill elements don
       angular.element(document).ready(function () {
         calcPercent();
+        //mistake check requires data generated fomr calcPercent();
+        mistakeCheck();
       });
     });
 

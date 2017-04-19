@@ -42,7 +42,6 @@ router.post('/api/newPurchase', uploading.single('photo'),  function(req,res,nex
   Expense.update({_id:expense}, {$push:{'expense_purchases':purchaseId}}, {upsert:true}, function(err) {
 if(err) return next(err);
   });
-  // console.log(req.file);
   res.redirect(config.urlBase+'home');
 });
 
