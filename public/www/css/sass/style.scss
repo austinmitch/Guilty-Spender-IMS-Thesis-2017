@@ -266,6 +266,7 @@ input[type="submit"], button {
         border-radius: 15px;
         background-color: #e05555;
         margin: 17px 20px 0 0;
+        overflow: hidden;
         .progressBarFill {
             height: 15px;
             border-radius: 15px;
@@ -324,6 +325,7 @@ input[type="submit"], button {
     }
 }
 .userName {
+  overflow: hidden;
     margin: {
         top: 20px;
         // bottom: 20px;
@@ -332,11 +334,13 @@ input[type="submit"], button {
         text-align: center;
         width: 100%;
         text-transform: capitalize;
+        float: left;
         font: {
             family: $lato;
             weight: 300;
         }
     }
+
 }
 .details {
     table, .table {

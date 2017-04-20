@@ -1,21 +1,22 @@
 <ion-view>
   <ion-content>
     <div class="content">
+      <p ng-click="showForm = !showForm">Edit</p>
       <div class="profileImage">
         <img ng-src="img/{{profileDetails.user_image}}" alt="">
       </div>
       <div class="userName">
         <h2>{{profileDetails.username}}</h2>
       </div>
-      <!-- form for editing username and profile image. uncomment and style if time allows -->
-      <!-- <form class="" action="http://localhost:3000/users/api/profile" method="post" enctype="multipart/form-data">
-        <label for="infoUpdate">
+      <form ng-show="showForm" action="http://localhost:3000/users/api/profile" method="post" enctype="multipart/form-data">
+        <label for="infoUpdate" class="photoUpload">
+          Choose a New Profil Photo
           <input type="file" name="profilePic" id="infoUpdate" value="">
         </label>
         <label for="username">Username</label>
-        <input type="text" name="username" value="">
+        <input type="text" name="username" value="" placeholder="New Username">
         <input type="submit" name="submit" value="Submit">
-      </form> -->
+      </form>
 
       <div class="details">
         <table>

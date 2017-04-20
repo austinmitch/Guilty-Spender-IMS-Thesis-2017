@@ -97,12 +97,6 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
       controller: 'AchieveController',
       templateUrl: 'partials/achievePage.html'
     })
-  .state('upload',
-    {
-      url: '/upload',
-      controller: 'UploadController',
-      templateUrl: 'partials/uploadTest.html'
-    })
   .state('details',
     {
       url: '/details/:purchid',
@@ -114,10 +108,12 @@ guiltySpender.config(['$stateProvider', '$urlRouterProvider', function($statePro
 
 guiltySpender.controller('LoginController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
   console.log('Login Page');
+  //all functionality handled by the form.
 }]);
 
 guiltySpender.controller('registerController', ['$scope', '$ionicLoading', 'apiCalls', '$window', '$http', '$location', function($scope, $ionicLoading, apiCalls, $window, $http, $location){
   console.log('register Page');
+  //all functionality handled by the form.
 }]);
 
 guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls', '$ionicModal', function($scope, $ionicLoading, apiCalls, $ionicModal){
@@ -126,9 +122,12 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
    .then(function(profileDetails) {
      console.log(profileDetails);
      $scope.profileDetails = profileDetails.data;
+
+     //calculate total monthly income
      var freq = $scope.profileDetails.user_income[0].income_frequency;
      var income = $scope.profileDetails.user_income[0].income_total;
      var totalIncome = income * freq;
+     //calculate estimated amount remaining from paycheck
      var expenses = $scope.profileDetails.user_expenses;
      $scope.expenses = expenses;
      var expenseTotal = 0;
@@ -281,9 +280,6 @@ guiltySpender.controller('UserController', ['$scope', '$ionicLoading', 'apiCalls
        element.append(name[0]);
        element.append(total[0]);
        element.append(expense[0]);
-      //  element.append(expenseOpen[0]);
-      //  element.append(expenseOptions[0]);
-      //  element.append(expenseClose[0]);
        $scope.oneclickNo = oneclickNo+1;
      }
 
@@ -332,17 +328,13 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
 
       function calcIncome() {
         var incomes = $scope.userDetails.user_income;
-        // console.log(incomes);
         var totalIncome;
         for(var i=0;i<incomes.length;i++) {
           var freq = incomes[i].income_frequency;
-          // console.log(freq);
           var income = Math.floor(incomes[i].income_total * freq);
-          // console.log(income);
           totalIncome =+ income;
         }
         $scope.totalIncome = totalIncome;
-        // console.log('total income '+totalIncome);
         return totalIncome;
       }
       calcIncome();
@@ -371,7 +363,7 @@ guiltySpender.controller('HomeController', ['$scope', '$rootScope', '$http', '$i
       }
       calcRemain();
 
-      //calculate the percentage of the expense tat has been spent
+      //calculate the percentage of the expense that has been spent
       function calcPercent() {
         var array = [];//will contain percent values
 
@@ -548,12 +540,9 @@ guiltySpender.controller('InfoController', ['$scope', '$ionicLoading', 'apiCalls
     element.append(name[0]);
     element.append(total[0]);
     element.append(expense[0]);
-   //  element.append(expenseOpen[0]);
-   //  element.append(expenseOptions[0]);
-   //  element.append(expenseClose[0]);
     $scope.oneclickNo = oneclickNo+1;
   }
-  
+
 }]);
 
 guiltySpender.controller('PurchaseController', ['$scope', '$ionicLoading', 'apiCalls', function($scope, $ionicLoading, apiCalls){
@@ -597,8 +586,4 @@ guiltySpender.controller('DetailsController', ['$scope', '$ionicLoading', 'apiCa
     var monthNo = purchDetails.data.purchase_month-1;
     $scope.month = month[monthNo];
   });
-}]);
-
-guiltySpender.controller('UploadController', ['$scope', '$ionicLoading', 'apiCalls', '$http', function($scope, $ionicLoading, apiCalls, $http){
-  console.log('upload page');
 }]);

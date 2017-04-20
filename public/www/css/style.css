@@ -199,7 +199,8 @@ input[type="submit"], button {
     height: 15px;
     border-radius: 15px;
     background-color: #e05555;
-    margin: 17px 20px 0 0; }
+    margin: 17px 20px 0 0;
+    overflow: hidden; }
     .expenseInfo .progressBar .progressBarFill {
       height: 15px;
       border-radius: 15px;
@@ -240,11 +241,13 @@ input[type="submit"], button {
     width: 100%; }
 
 .userName {
+  overflow: hidden;
   margin-top: 20px; }
   .userName h2 {
     text-align: center;
     width: 100%;
     text-transform: capitalize;
+    float: left;
     font-family: "Lato", arial, sans-serif;
     font-weight: 300; }
 
