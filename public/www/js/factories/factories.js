@@ -19,12 +19,12 @@ guiltySpender.factory('apiCalls', ['$http','$stateParams', function($http, $stat
   // var purchUrl = 'http://localhost:3000/purchases/api/';
   // var expUrl = 'http://localhost:3000/expenses/api/';
 
-  var baseUrl = '135.23.232.146:3000/api/';
-  var userUrl = '135.23.232.146:3000/users/api/';
-  var aviUrl = '135.23.232.146:3000/avatar/api/';
-  var dioUrl = '135.23.232.146:3000/diologue/api/';
-  var purchUrl = '135.23.232.146:3000/purchases/api/';
-  var expUrl = '135.23.232.146:3000/expenses/api/';
+  var baseUrl = 'http://135.23.232.146:3000/api/';
+  var userUrl = 'http://135.23.232.146:3000/users/api/';
+  var aviUrl = 'http://135.23.232.146:3000/avatar/api/';
+  var dioUrl = 'http://135.23.232.146:3000/diologue/api/';
+  var purchUrl = 'http://135.23.232.146:3000/purchases/api/';
+  var expUrl = 'http://135.23.232.146:3000/expenses/api/';
 
   var apiCalls = {};
 

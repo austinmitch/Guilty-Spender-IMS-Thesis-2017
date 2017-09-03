@@ -3,7 +3,7 @@
     <ion-content>
       <div class="content">
         <button ng-click="modal.hide()">Back</button>
-        <form class="newPurchase" action="http://localhost:3000/purchases/api/newpurchase" method="post" enctype="multipart/form-data">
+        <form class="newPurchase" action="http://135.23.232.146:3000/purchases/api/newpurchase" method="post" enctype="multipart/form-data">
           <input type="text" name="name" value="" placeholder="Name">
           <select name="expense">
             <option ng-repeat="expense in userDetails.user_expenses" value="{{expense._id}}">{{expense.expense_name}}</option>
@@ -16,7 +16,7 @@
           <input type="submit" name="save" value="Save">
         </div>
       </form>
-      <form ng-repeat="oneclick in oneClicks" action="http://localhost:3000/purchases/api/newPurchase" method="post">
+      <form ng-repeat="oneclick in oneClicks" action="http://135.23.232.146:3000/purchases/api/newPurchase" method="post">
           <input class="hidden" type="text" name="name" value="{{oneclick.oneclick_name}}">
           <input class="hidden" type="text" name="expense" value="{{oneclick.oneclick_expense}}">
           <input class="hidden" type="text" name="price" value="{{oneclick.oneclick_total}}">
